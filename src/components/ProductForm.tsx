@@ -7,7 +7,7 @@ type ProductFormProps = {
   handleChange: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void
 }
 
-export function ProductForm({ product, handleSubmit, handleChange }: ProductFormProps) {
+export  function ProductForm({ product, handleSubmit, handleChange }: ProductFormProps) {
   const inputStyle =
     'w-full px-3 py-2 text-white border rounded-lg focus:outline-none focus:border-blue-400'
   const labelStyle = 'block text-sm font-medium text-gray-600'

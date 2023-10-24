@@ -1,34 +1,29 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import api from '../../../api'
 
-export const fetchProducts= createAsyncThunk('users/fetchProducts',async()=>{
-  const response = await api.get('/mock/e-commerce/products.json')
+export const fetchCategory = createAsyncThunk('users/fetchCategory', async () => {
+  const response = await api.get('/mock/e-commerce/categories.json')
   return response.data
 })
-export type Product = {
+export type Category = {
   id: number
   name: string
-  image: string
-  description: string
-  categories: number[]
-  variants: string[]
-  sizes: string[]
 }
 
-export type ProductState = {
-  product: Product[]
+export type CategoryState = {
+  Category: Category[]
   error: null | string
   isLoading: boolean
 }
 
-const initialState: ProductState = {
-  product: [],
+const initialState: CategoryState = {
+  Category: [],
   error: null,
   isLoading: false
 }
 
-export const producstSlice = createSlice({
-  name: 'products',
+export const categorySlice = createSlice({
+  name: 'categories',
   initialState,
   reducers: {
     // productsRequest: (state) => {
@@ -46,25 +41,23 @@ export const producstSlice = createSlice({
     //   const filteredItems = state.items.filter((product) => product.id !== action.payload.productId)
     //   state.items = filteredItems
     // }
-
-
   },
   extraReducers: (builder) => {
-      builder.addCase(fetchProducts.pending, (state) => {
-        state.isLoading = true
-        state.error = null
-      })
-      builder.addCase(fetchProducts.fulfilled, (state, action) => {
-        state.isLoading = false
-        state.product = action.payload
-      })
-      builder.addCase(fetchProducts.rejected, (state, action) => {
-        state.isLoading = false
-        state.error = action.error.message || 'Something went wrong'
-      })
+    builder.addCase(fetchCategory.pending, (state) => {
+      state.isLoading = true
+      state.error = null
+    })
+    builder.addCase(fetchCategory.fulfilled, (state, action) => {
+      state.isLoading = false
+      state.Category = action.payload
+    })
+    builder.addCase(fetchCategory.rejected, (state, action) => {
+      state.isLoading = false
+      state.error = action.error.message || 'Something went wrong'
+    })
   }
 })
 
 // export const { removeProduct, addProduct, productsRequest, productsSuccess } = productSlice.actions
 
-export default producstSlice.reducer
+export default categorySlice.reducer

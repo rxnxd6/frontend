@@ -15,7 +15,7 @@ const initialProductState: Product = {
   sizes: []
 }
 
-export function NewProductWrapper() {
+export default function NewProductWrapper() {
   const dispatch = useDispatch<AppDispatch>()
   const [product, setProduct] = useState<Product>(initialProductState)
 
