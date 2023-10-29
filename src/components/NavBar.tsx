@@ -1,37 +1,55 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { logout } from '../redux/slices/User/useerSlice'
+import { AppDispatch, RootState } from '../redux/store'
+import { useDispatch, useSelector } from 'react-redux'
+import HeroSection from './HeroSection'
 
 export default function NavBar() {
+  const { isLooggedIn, userData } = useSelector((state: RootState) => state.userR)
+  const dispatch: AppDispatch = useDispatch()
+  const navegate = useNavigate()
+  const handleLogout = () => {
+    dispatch(logout())
+    navegate('/logout')
+  }
   return (
     // feach where somebody ->role:admin/user
-    <nav className="menu-container">
-      <input type="checkbox" aria-label="Toggle menu" />
-      <span></span>
-      <span></span>
-      <span></span>
-
-      {/* <a href="#" className="menu-logo">
-    <img src="https://wweb.dev/resources/navigation-generator/logo-placeholder.png" alt="My Awesome Website"/>
-  </a> */}
-
-      <div className="menu">
+    <header id="blog-header">
+      <h2>Timeless Tea Treasures</h2>
+      <nav className="nav-menu ">
         <ul>
           <li>
-            <Link to="/">Home</Link>
+            <Link to="/" className="nav-link">
+              Home
+            </Link>
           </li>
           <li>
-            <Link to="/Product">Product</Link>
+            <Link to="/register" className="nav-link">
+              Register
+            </Link>
           </li>
+          <li>
+            <Link to="/login" className="nav-link">
+              Login
+            </Link>
+          </li>
+          {isLooggedIn && (
+            <>
+              <li>
+                <Link to={`/dashboard/${userData.role}`} className="nav-link">
+                  User
+                </Link>
+              </li>
+              <li>
+                <Link to="/logout" className="nav-link" onClick={handleLogout}>
+                  Logout
+                </Link>
+              </li>
+            </>
+          )}
         </ul>
-        <ul>
-          <li>
-            <Link to="/dashboard/user">User</Link>
-          </li>
-          <li>
-            <Link to="dashboard/admin">Admin</Link>
-          </li>
-        </ul>
-      </div>
-    </nav>
+      </nav>
+    </header>
   )
 }

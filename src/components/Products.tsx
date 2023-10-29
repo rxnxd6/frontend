@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import AdminsideBar from './AdminsideBar'
+import AdminsideBar from '../page/admin/AdminsideBar'
 import { useDispatch, useSelector } from 'react-redux'
 import { AppDispatch, RootState } from '../redux/store'
 import { fetchProducts } from '../redux/slices/products/productSlice'
@@ -26,7 +26,6 @@ export default function Product() {
         <div className="main-content"></div>
         <h2>List of Proudect</h2>
         <section className="products">
-         
           {product.length > 0 &&
             product.map((product) => {
               return (

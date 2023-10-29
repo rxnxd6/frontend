@@ -7,8 +7,8 @@ import {
   removeProduct
 } from '../redux/slices/products/productSlice'
 import { AppDispatch, RootState } from '../redux/store'
-import { NewProductWrapper } from './NewProductWrapper'
 import api from '../api'
+import NewProductWrapper from './NewProductWrapper'
 
 export function ProductsManager() {
   const dispatch = useDispatch<AppDispatch>()
@@ -34,18 +34,18 @@ export function ProductsManager() {
   }
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 w-full">
+    <div >
       <NewProductWrapper />
       {products.isLoading && <h3> Loading products...</h3>}
-      <div className="card grid gap-4">
+      <div className="product-list">
         <ul>
-          {products.items.map((product) => (
-            <li key={product.id} className="flex items-center gap-4 text-2xl mb-2">
+          {products.product.map((product) => (
+            <li key={product.id} >
               <img src={product.image} alt={product.name} width="50" />
               <span>{product.name}</span>
-              <button
-                className=" text-red-400 text-xs"
-                onClick={() => dispatch(removeProduct({ productId: product.id }))}>
+              <button className='bt-remove'
+               
+                onClick={() => dispatch(removeProduct({ productId: product.id}))}>
                 X
               </button>
             </li>

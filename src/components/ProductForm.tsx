@@ -13,9 +13,9 @@ export  function ProductForm({ product, handleSubmit, handleChange }: ProductFor
   const labelStyle = 'block text-sm font-medium text-gray-600'
 
   return (
-    <form onSubmit={handleSubmit} className="p-4 bg-gray-100 rounded-lg">
-      <div className="mb-4">
-        <label htmlFor="name" className={labelStyle}>
+    <form onSubmit={handleSubmit}  className='form-newProduct'>
+      <div>
+        <label htmlFor="name" >
           Name:
         </label>
         <input
@@ -24,11 +24,11 @@ export  function ProductForm({ product, handleSubmit, handleChange }: ProductFor
           id="name"
           value={product.name}
           onChange={handleChange}
-          className={inputStyle}
+          
         />
       </div>
-      <div className="mb-4">
-        <label htmlFor="image" className={labelStyle}>
+      <div >
+        <label htmlFor="image" >
           Image URL:
         </label>
         <input
@@ -37,11 +37,11 @@ export  function ProductForm({ product, handleSubmit, handleChange }: ProductFor
           id="image"
           value={product.image}
           onChange={handleChange}
-          className={inputStyle}
+        
         />
       </div>
-      <div className="mb-4">
-        <label htmlFor="description" className={labelStyle}>
+      <div >
+        <label htmlFor="description" >
           Description:
         </label>
         <textarea
@@ -49,11 +49,11 @@ export  function ProductForm({ product, handleSubmit, handleChange }: ProductFor
           id="description"
           value={product.description}
           onChange={handleChange}
-          className={inputStyle}
+          
         />
       </div>
-      <div className="mb-4">
-        <label htmlFor="categories" className={labelStyle}>
+      <div >
+        <label htmlFor="categories" >
           Categories: (use comma , to create multiple)
         </label>
         <input
@@ -62,11 +62,11 @@ export  function ProductForm({ product, handleSubmit, handleChange }: ProductFor
           id="categories"
           value={product.categories.join(',')}
           onChange={handleChange}
-          className={inputStyle}
+          
         />
       </div>
       <div className="mb-4">
-        <label htmlFor="variants" className={labelStyle}>
+        <label htmlFor="variants" >
           Variants: (use comma , to create multiple)
         </label>
         <input
@@ -75,11 +75,11 @@ export  function ProductForm({ product, handleSubmit, handleChange }: ProductFor
           id="variants"
           value={product.variants.join(',')}
           onChange={handleChange}
-          className={inputStyle}
+         
         />
       </div>
       <div className="mb-4">
-        <label htmlFor="sizes" className={labelStyle}>
+        <label htmlFor="sizes" >
           Sizes: (use comma , to create multiple)
         </label>
         <input
@@ -88,12 +88,11 @@ export  function ProductForm({ product, handleSubmit, handleChange }: ProductFor
           id="sizes"
           value={product.sizes.join(',')}
           onChange={handleChange}
-          className="w-full px-3 py-2 text-white border rounded-lg focus:outline-none focus:border-blue-400"
         />
       </div>
       <button
         type="submit"
-        className="w-full px-4 py-2 text-white bg-blue-500 rounded-lg hover:bg-blue-600">
+        >
         Add Product
       </button>
     </form>

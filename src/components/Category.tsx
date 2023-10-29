@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import AdminsideBar from './AdminsideBar'
+import AdminsideBar from '../page/admin/AdminsideBar'
 import { useDispatch, useSelector } from 'react-redux'
 import { AppDispatch, RootState } from '../redux/store'
 
@@ -21,27 +21,24 @@ export default function Category() {
   }
   return (
     <div>
-      <div className="container">
+      <div className="container-category">
         <AdminsideBar />
         <div className="main-content">
+          <h2>List of Category</h2>
+          <section>
+            {Category.length > 0 &&
+              Category.map((Category) => {
+                return (
+                  <article key={Category.id} className="product">
+                    <h3>{Category.name}</h3>
 
-        <h2>List of Category</h2>
-        <section >
-          {Category.length > 0 &&
-            Category.map((Category) => {
-              return (
-                <article key={Category.id} className="product">
-                  <h3>{Category.name}</h3>
-
-                  <button>Edit</button>
-                  <button>Delete</button>
-                </article>
-              )
-            })}
-        </section>
-
+                    <button>Edit</button>
+                    <button>Delete</button>
+                  </article>
+                )
+              })}
+          </section>
         </div>
-        
       </div>
     </div>
   )

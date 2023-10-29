@@ -11,25 +11,88 @@ export type User = {
   lastName: string
   email: string
   password: string
-  rol: string
+  role: string
 }
+const data =
+  localStorage.getItem('loginData') !== null
+    ? JSON.parse(String(localStorage.getItem('loginData')))
+    : []
 
 export type UserState = {
   user: User[]
   error: null | string
   isLoading: boolean
+  isLooggedIn: boolean
+  userData: User | null
+  searchTerm: string
 }
+localStorage.getItem
 
 const initialState: UserState = {
   user: [],
   error: null,
-  isLoading: false
+  isLooggedIn: data.isLooggedIn,
+  isLoading: false,
+  userData: data.userData,
+  searchTerm: ''
 }
 
 export const userSlice = createSlice({
   name: 'Users',
   initialState,
-  reducers: {},
+  reducers: {
+    login: (state, action) => {
+      state.isLooggedIn = true
+      state.userData = action.payload
+      localStorage.setItem(
+        'loginData',
+        JSON.stringify({
+          isLooggedIn: state.isLooggedIn,
+          userData: state.userData
+        })
+      )
+    },
+    logout: (state) => {
+      state.isLooggedIn = false
+      state.userData = null
+      localStorage.setItem(
+        'loginData',
+        JSON.stringify({
+          isLooggedIn: state.isLooggedIn,
+          userData: state.userData
+        })
+      )
+    },
+    searchUsers: (state, action) => {
+      state.searchTerm = action.payload
+    },
+    DeleteUser: (state, action) => {
+      const filterUsers = state.user.filter((user) => user.id !== action.payload)
+      state.user = filterUsers
+    },
+    addUser: (state, action) => {
+      state.user.push(action.payload)
+    },
+    updateUser: (state, action) => {
+      const { id, firstName, lastName } = action.payload
+      // // find user
+      const foundUser = state.user.find((user) => user.id === id)
+      // //  if found you have to update
+      if (foundUser) {
+        foundUser.firstName = firstName
+        foundUser.lastName = lastName
+        state.userData = foundUser
+        localStorage.setItem(
+          'loginData',
+          JSON.stringify({
+            isLooggedIn: state.isLooggedIn,
+            userData: state.userData
+          })
+        )
+      }
+    }
+  },
+
   extraReducers: (builder) => {
     builder.addCase(fetchUser.pending, (state) => {
       state.isLoading = true
@@ -46,6 +109,5 @@ export const userSlice = createSlice({
   }
 })
 
-// export const { removeProduct, addProduct, productsRequest, productsSuccess } = productSlice.actions
-
 export default userSlice.reducer
+export const { login, logout, searchUsers, DeleteUser, addUser, updateUser } = userSlice.actions
