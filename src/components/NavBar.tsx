@@ -15,41 +15,39 @@ export default function NavBar() {
   }
   return (
     // feach where somebody ->role:admin/user
-    <header id="blog-header">
+    <nav className="nav-menu">
       <h2>Timeless Tea Treasures</h2>
-      <nav className="nav-menu ">
-        <ul>
-          <li>
-            <Link to="/" className="nav-link">
-              Home
-            </Link>
-          </li>
-          <li>
-            <Link to="/register" className="nav-link">
-              Register
-            </Link>
-          </li>
-          <li>
-            <Link to="/login" className="nav-link">
-              Login
-            </Link>
-          </li>
-          {isLooggedIn && (
-            <>
-              <li>
-                <Link to={`/dashboard/${userData.role}`} className="nav-link">
-                  User
-                </Link>
-              </li>
-              <li>
-                <Link to="/logout" className="nav-link" onClick={handleLogout}>
-                  Logout
-                </Link>
-              </li>
-            </>
-          )}
-        </ul>
-      </nav>
-    </header>
+      <ul>
+        <li>
+          <Link to="/" className="nav-link">
+            Home
+          </Link>
+        </li>
+        <li>
+          <Link to="/register" className="nav-link">
+            Register
+          </Link>
+        </li>
+        <li>
+          <Link to="/login" className="nav-link">
+            Login
+          </Link>
+        </li>
+        {isLooggedIn && (
+          <>
+            {/* <li>
+              <Link to={`/dashboard/${userData.role}`} className="nav-link">
+                user
+              </Link>
+            </li> */}
+            <li>
+              <Link to="/logout" className="nav-link" onClick={handleLogout}>
+                Logout
+              </Link>
+            </li>
+          </>
+        )}
+      </ul>
+    </nav>
   )
 }

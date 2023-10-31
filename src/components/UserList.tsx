@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { AppDispatch, RootState } from '../redux/store'
 
 import { DeleteUser, fetchUser, searchUsers } from '../redux/slices/User/useerSlice'
-import SearchInput from './SearchInput'
+import { SearchInput } from './SearchInput'
 
 export default function UserList() {
   const { user, isLoading, error, searchTerm } = useSelector((state: RootState) => state.userR)
@@ -33,31 +33,30 @@ export default function UserList() {
   }
   return (
     <div>
-      <div className="container">
-        <AdminsideBar />
-        <div className="main-content">
-          <h2>List of User</h2>
-          <SearchInput searchTerm={searchTerm} handleSearch={handleSearch} />
-          <section>
-            {SearchUser.length > 0 &&
-              SearchUser.map((user) => {
-                if (user.role !== 'admin')
-                  return (
-                    <article key={user.id} className="product">
-                      <h3>{`${user.firstName} ${user.lastName}`}</h3>
-                      <p>{user.email}</p>
-                      <p>{user.role}</p>
-                      <button
-                        onClick={() => {
-                          handleDelete(user.id)
-                        }}>
-                        Delete
-                      </button>
-                    </article>
-                  )
-              })}
-          </section>
-        </div>
+      <AdminsideBar />
+
+      <div className="main-content">
+        <h2>List of User</h2>
+        <SearchInput searchTerm={searchTerm} handleSearch={handleSearch} />
+        <section>
+          {SearchUser.length > 0 &&
+            SearchUser.map((user) => {
+              if (user.role !== 'admin')
+                return (
+                  <article key={user.id}>
+                    <h3>{`${user.firstName} ${user.lastName}`}</h3>
+                    <p>{user.email}</p>
+                    <p>{user.role}</p>
+                    <button
+                      onClick={() => {
+                        handleDelete(user.id)
+                      }}>
+                      Delete
+                    </button>
+                  </article>
+                )
+            })}
+        </section>
       </div>
     </div>
   )

@@ -11,36 +11,50 @@ export type Category = {
 }
 
 export type CategoryState = {
-  Category: Category[]
+  categories: Category[]
   error: null | string
   isLoading: boolean
+  selectedCategory: number
 }
 
 const initialState: CategoryState = {
-  Category: [],
+  categories: [],
   error: null,
-  isLoading: false
+  isLoading: false,
+  selectedCategory: 0
 }
 
 export const categorySlice = createSlice({
   name: 'categories',
   initialState,
   reducers: {
-    // productsRequest: (state) => {
-    //   state.isLoading = true
-    // },
-    // productsSuccess: (state, action) => {
-    //   state.isLoading = false
-    //   state.items = action.payload
-    // },
-    // addProduct: (state, action: { payload: { product: Product } }) => {
-    //   // let's append the new product to the beginning of the array
-    //   state.items = [action.payload.product, ...state.items]
-    // },
-    // removeProduct: (state, action: { payload: { productId: number } }) => {
-    //   const filteredItems = state.items.filter((product) => product.id !== action.payload.productId)
-    //   state.items = filteredItems
-    // }
+    deleteCategory: (state, action) => {
+      const filterCategory = state.categories.filter((category) => category.id !== action.payload)
+      state.categories = filterCategory
+    },
+    setSelectedCategory: (state, action) => {
+      state.selectedCategory = Number(action.payload)
+    },
+    
+    fiterCategory: (state, action) => {
+      const filterCategory = state.categories.filter((category) => category.id === action.payload)
+      state.categories = filterCategory
+    },
+    addCategory: (state, action) => {
+      state.categories.push(action.payload)
+    },
+    updateCategory: (state, action) => {
+      const { id,name} = action.payload
+      // // find user
+      const foundcategory = state.categories.find((category) => category.id === id)
+      // //  if found you have to update
+      if (foundcategory) {
+        foundcategory.name =  name
+       
+        
+      }
+    }
+
   },
   extraReducers: (builder) => {
     builder.addCase(fetchCategory.pending, (state) => {
@@ -49,7 +63,7 @@ export const categorySlice = createSlice({
     })
     builder.addCase(fetchCategory.fulfilled, (state, action) => {
       state.isLoading = false
-      state.Category = action.payload
+      state.categories = action.payload
     })
     builder.addCase(fetchCategory.rejected, (state, action) => {
       state.isLoading = false
@@ -58,6 +72,5 @@ export const categorySlice = createSlice({
   }
 })
 
-// export const { removeProduct, addProduct, productsRequest, productsSuccess } = productSlice.actions
-
+export const { deleteCategory, setSelectedCategory,fiterCategory,addCategory,updateCategory } = categorySlice.actions
 export default categorySlice.reducer

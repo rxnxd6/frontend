@@ -23,6 +23,7 @@ import AdminRoute from './routes/AdminRoute'
 import Register from './page/user/Register'
 import HeroSection from './components/HeroSection'
 import { ProductsManager } from './components/ProductsManager'
+import Cart from './components/Cart'
 
 // import Product  from './page/Product'
 
@@ -37,18 +38,20 @@ function App() {
         <Route path="/logout" element={<Home />} />
         <Route path="/register" element={<Register />} />
         <Route path="/products/:id" element={<ProductDetails />} />
+        <Route path="/cart" element={<Cart />} />
 
         <Route path="/dashboard" element={<ProtectRoute />}>
           <Route path="/dashboard/user" element={<UserDashboard />} />
           <Route path="user/profile" element={<UserProfile />} />
-          <Route path="user/orders" element={<UserOrder />} />
+          <Route path="user/order" element={<UserOrder />} />
         </Route>
 
         <Route path="/dashboard/" element={<AdminRoute />}>
           <Route path="admin" element={<AdminDashboard />} />
           <Route path="admin/catergory" element={<Category />} />
-          <Route path="admin/products" element={<ProductsManager/>} />
+          <Route path="admin/products" element={<ProductsManager />} />
           <Route path="admin/user" element={<UserList />} />
+          <Route path="admin/orders" element={<UserOrder />} />
         </Route>
       </Routes>
       <Footer />

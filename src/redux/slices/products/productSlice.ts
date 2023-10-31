@@ -14,6 +14,7 @@ export type Product = {
   variants: string[]
   sizes: string[]
   price: number
+  cartQuantity:number
 }
 
 export type ProductState = {
@@ -70,7 +71,13 @@ export const producstSlice = createSlice({
   removeProduct: (state, action: { payload: { productId: number } }) => {
     const filteredItems = state.product.filter((product) => product.id !== action.payload.productId)
     state.product = filteredItems
-  }
+  },
+  editProduct: (state, action: { payload: { editedProduct: Product } }) => {
+    const editedProduct = action.payload.editedProduct
+    state.product = state.product.map((product) =>
+      product.id === editedProduct.id ? editedProduct : product
+    )
+  },
 },
   extraReducers: (builder) => {
     builder.addCase(fetchProducts.pending, (state) => {
@@ -93,4 +100,4 @@ export const producstSlice = createSlice({
 export default producstSlice.reducer
 export const { findProductById, searchProduct, sortProducts,productsRequest,
   productsSuccess,
-  removeProduct , addProduct} = producstSlice.actions
+  removeProduct , addProduct, editProduct,} = producstSlice.actions
