@@ -30,10 +30,11 @@ export default function Register() {
   }
 
   return (
-    <div className="container">
-      <h2>User Registeration</h2>
+    <div className="container-register">
+     
       <form  className =" registeration-form"onSubmit={handleSubmit}>
         <div className="form-control">
+        <h2>User Registeration</h2>
           <label htmlFor="firstName">First Name:</label>
           <input type="text" name="firstName" value={user.firstName} onChange={handleChange} />
         </div>

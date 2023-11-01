@@ -14,7 +14,7 @@ export type Product = {
   variants: string[]
   sizes: string[]
   price: number
-  cartQuantity:number
+  cartQuantity: number
 }
 
 export type ProductState = {
@@ -56,29 +56,39 @@ export const producstSlice = createSlice({
         state.product.sort((a, b) => a.price - b.price)
       }
     },
-  
-  productsRequest: (state) => {
-    state.isLoading = true
+
+    productsRequest: (state) => {
+      state.isLoading = true
+    },
+    productsSuccess: (state, action) => {
+      state.isLoading = false
+      state.product = action.payload
+    },
+    addProduct: (state, action: { payload: { product: Product } }) => {
+      // let's append the new product to the beginning of the array
+      state.product = [action.payload.product, ...state.product]
+    },
+    removeProduct: (state, action: { payload: { productId: number } }) => {
+      const filteredItems = state.product.filter(
+        (product) => product.id !== action.payload.productId
+      )
+      state.product = filteredItems
+    },
+
+    updateProduct: (state, action) => {
+      const updatedProduct = action.payload
+
+      const products = state.product.map((product) => {
+        if (product.id === updatedProduct.id) {
+          return updatedProduct
+        }
+        return product
+      })
+      state.product = products
+      console.log('products:', products)
+      return state
+    }
   },
-  productsSuccess: (state, action) => {
-    state.isLoading = false
-    state.product= action.payload
-  },
-  addProduct: (state, action: { payload: { product: Product } }) => {
-    // let's append the new product to the beginning of the array
-    state.product = [action.payload.product, ...state.product]
-  },
-  removeProduct: (state, action: { payload: { productId: number } }) => {
-    const filteredItems = state.product.filter((product) => product.id !== action.payload.productId)
-    state.product = filteredItems
-  },
-  editProduct: (state, action: { payload: { editedProduct: Product } }) => {
-    const editedProduct = action.payload.editedProduct
-    state.product = state.product.map((product) =>
-      product.id === editedProduct.id ? editedProduct : product
-    )
-  },
-},
   extraReducers: (builder) => {
     builder.addCase(fetchProducts.pending, (state) => {
       state.isLoading = true
@@ -98,6 +108,13 @@ export const producstSlice = createSlice({
 // export const { removeProduct, addProduct, productsRequest, productsSuccess } = productSlice.actions
 
 export default producstSlice.reducer
-export const { findProductById, searchProduct, sortProducts,productsRequest,
+export const {
+  findProductById,
+  searchProduct,
+  sortProducts,
+  productsRequest,
   productsSuccess,
-  removeProduct , addProduct, editProduct,} = producstSlice.actions
+  removeProduct,
+  addProduct,
+  updateProduct
+} = producstSlice.actions

@@ -20,18 +20,21 @@ const Cart = () => {
   const handleRemoveFromCart = (product: Product) => {
     dispatch(cartActions.removeCart(product))
   }
+  const handleDelete = (product: Product) => {
+    dispatch(cartActions.deleteCart(product))
+  }
   return (
-    <div>
+    <div  className='cart-list'>
       <br></br>
       <h3>Shopping Cart</h3>
       <br></br>
       {cartDetails.length === 0 ? (
         <p>Your cart is empty.</p>
       ) : (
-        <ul>
+        <ul >
           {cartDetails.map((product) => (
-            <li key={product.id}>
-              <img className="product-size" src={product.image} alt={product.name} /> <br></br>
+            <li key={product.id}  >
+              <img  src={product.image} alt={product.name} /> <br></br>
               {product.name} - Quantity: {product.cartQuantity}
               <button onClick={() => handleAddCart(product)}> +</button>
               <button onClick={() => handleRemoveFromCart(product)}> -</button>
@@ -40,6 +43,13 @@ const Cart = () => {
                 }}>
                 Back To Shopping
               </button>
+              <button
+                      onClick={() => {
+                        handleDelete(product)
+                      }}>
+                      Delete
+                    </button>
+
               
             </li>
           ))}

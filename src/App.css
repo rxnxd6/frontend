@@ -2,26 +2,30 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-}
-link{
-  text-decoration: none;
+  
 }
 .App{
-  margin: 0;
+  box-sizing: border-box;
+  margin: 0px;
   padding: 0;
-}
 
+}
+link {
+  text-decoration: none;
+}
 body {
   text-decoration: none;
   list-style-type: none;
   outline: none;
   font-family: 'Caveat', cursive;
   font-family: 'Lora', serif;
+  padding:0px;
+  
 }
 
 html {
   scroll-behavior: smooth;
-  /* background-color: rgb(255, 255, 255); */
+  background-color: rgb(255, 255, 255);
   font-family: Arial, Helvetica, sans-serif;
 }
 img {
@@ -31,30 +35,14 @@ img {
   border-radius: 1rem;
   border-style: double;
 }
-header {
-  display: flex;
-  justify-content: space-around;
-  padding: 0.5rem 0.5rem;
-  width: 100%;
-  position: sticky;
-  top: 1;
-  z-index: 15;
-  min-height: 5vh;
-  text-align: right;
-
-  border-radius: 0.7rem;
+.container-header{
+ display: flex;
+ min-height: 100vh;
 }
-header h2 {
-  font-size: 1.2rem;
-  color: rgb(195, 100, 88);
-  text-align: left;
-  padding: 1.2rem;
-}
-
-.nav-menu {
+ .nav-menu {
   display: flex;
   gap: 10px;
-  background-color: hsl(0, 13%, 79%);  
+  background-color: hsl(0, 13%, 79%);
 }
 
 nav ul {
@@ -74,41 +62,37 @@ nav ul li :hover {
   font-size: 1.8rem;
   color: rgb(195, 100, 88);
   cursor: pointer;
+} 
+.nav-menu {  
+  background-color: hsl(0, 13%, 79%);
+  color: #fff;
+  padding: 10px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-/* responsive  */
-@media screen and (max-width: 992px) {
+/* Responsive design for screens smaller than 768px (adjust breakpoint as needed) */
+@media (max-width: 768px) {
+  .nav-menu {
+    flex-direction: column; /* Stack menu items vertically */
+    text-align: center; /* Center-align text */
+  }
+
+  .nav-menu h2 {
+    margin: 10px 0; /* Add space at the top and bottom */
+  }
+
+  .nav-menu ul {
+    margin-top: 10px; /* Add space between header and menu */
+  }
+
+  .nav-menu li {
+    margin: 10px 0; /* Add space between menu items */
+  }
 }
 
-@media screen and (max-width: 768px) {
-  html {
-    font-size: 55.5%;
-  }
-  #hero {
-    width: 100%;
-  }
-}
-@media screen and (max-width: 600px) {
-  html {
-    font-size: 48.5%;
-  }
-  header {
-    flex-direction: column;
-  }
-  nav ul {
-    flex-direction: column;
-    padding-left: 2.5rem;
-  }
-  .container {
-    min-height: auto;
-  }
-  .container .sidebar {
-    width: 90%;
-  }
-  img {
-    width: 100%;
-  }
-}
+
 /* style the home page */
 
 .card {
@@ -117,7 +101,6 @@ nav ul li :hover {
   margin: auto;
   text-align: center;
   font-family: arial;
-  
 }
 
 .price {
@@ -141,7 +124,7 @@ nav ul li :hover {
   opacity: 0.7;
 }
 
- .container-home {
+.container-home {
   padding: 5rem 1rem;
   display: flex;
   align-items: center;
@@ -153,20 +136,16 @@ nav ul li :hover {
   width: 20rem;
   height: 20rem;
   border: 0.3rem solid;
-} 
+}
 
 .products {
   display: grid;
   grid-template-columns: auto auto auto auto;
   gap: 2rem;
   color: rgb(195, 100, 88);
-} 
+}
 
-
-
-
-
- .proudect-content {
+.proudect-content {
   flex-direction: row;
   flex-basis: 50%;
   margin-bottom: 2rem;
@@ -175,8 +154,7 @@ nav ul li :hover {
 .proudect-content h2 {
   color: rgb(195, 100, 88);
   font-family: 'Italiano,cursive';
-} 
-
+}
 
 /* style the hero secion */
 #hero {
@@ -199,9 +177,6 @@ nav ul li :hover {
     text-align: center;
   }
 }
-
-
-
 
 /* style for the search input */
 input[type='text'] {
@@ -235,6 +210,15 @@ input[type='text']::placeholder {
 }
 
 /* style for login page  */
+.container-register{
+  padding: 5rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 95vh;
+
+}
+
 .container-login {
   display: flex;
   justify-content: center;
@@ -246,6 +230,8 @@ input[type='text']::placeholder {
 .registeration-form {
   display: flex;
   flex-direction: column;
+   justify-content: center;
+  align-items: center;
 }
 
 .form-control {
@@ -286,7 +272,8 @@ button {
 
 button:hover {
   background-color: rgb(214, 147, 138);
-} */
+}
+*/
 
 /* Add styles for the registration form */
 .container {
@@ -337,7 +324,6 @@ input {
 /* 
  style for the the product deteails  */
 
-
 .product-details {
   text-align: center;
   padding: 20px;
@@ -383,7 +369,6 @@ input {
   background-color: rgb(214, 147, 138);
 }
 
-
 /* sidebar for admin */
 .sidebar {
   background-color: #fff;
@@ -414,12 +399,11 @@ ul {
 
 li {
   margin-bottom: 10px;
- 
 }
 
 a {
   text-decoration: none;
-  color:rgb(140, 90, 84);
+  color: rgb(140, 90, 84);
   font-size: 18px;
 }
 
@@ -487,8 +471,7 @@ h3 {
 
 /* style the product list add and remove  */
 
-
-.container-admin{
+.container-admin {
   width: 20%;
   height: 100%;
   color: #fff;
@@ -496,7 +479,7 @@ h3 {
   margin-top: 50px;
 }
 
- .product-list {
+.product-list {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -530,11 +513,9 @@ h3 {
 
 @media (max-width: 768px) {
   .product-list li {
-    max-width: calc(50% - 10px); 
+    max-width: calc(50% - 10px);
   }
-} 
-
-
+}
 
 /* Apply the container-main class to the sidebar */
 .container-category {
@@ -543,7 +524,7 @@ h3 {
 
 /* Style the main content area */
 .main-content {
-  flex: 2; 
+  flex: 2;
   padding: 20px;
 }
 
@@ -565,11 +546,11 @@ h3 {
 .category-main {
   display: flex;
   flex-wrap: wrap;
-} 
+}
 
 /* Style individual product cards */
 .category-main article {
-  width: calc(33.33% - 50px); 
+  width: calc(33.33% - 50px);
   margin: 10px;
   padding: 10px;
   border: 1px solid #ccc;
@@ -582,8 +563,6 @@ h3 {
   font-size: 18px;
 }
 
-
-
 /* Media Query for responsiveness */
 @media (max-width: 768px) {
   .category-main article {
@@ -591,8 +570,8 @@ h3 {
   }
 }
 
-@media (max-width: 576px) {list
-  .category-main article {
+@media (max-width: 576px) {
+  list .category-main article {
     width: 100%;
   }
 }
@@ -601,23 +580,19 @@ h3 {
 .container-category {
   display: flex;
 }
-.product-content{
-  flex: 2; 
+.product-content {
+  flex: 2;
   padding: 20px;
 }
-
-
-
 
 /* Apply the container-admin class to the container */
 .container-admin {
   display: grid;
- 
 }
 
 /* Style the sidebar (product-content) */
 .product-content {
- width: 50%;
+  width: 50%;
   color: #fff;
   padding: 20px;
 }
@@ -632,16 +607,15 @@ margin: 10px;
 } */
 
 .product-list-order {
-  border: 1px solid #ccc; /* Add a border to create a card-like shape */
+  border: 1px solid #ccc; 
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   padding: 20px;
-  margin: 10px; 
-  width: calc(33.33% - 20px); 
-  box-sizing: border-box; 
+  margin: 10px;
+  width: calc(33.33% - 20px);
+  box-sizing: border-box;
   display: inline-block;
-  grid-template-columns: 1fr 1fr 1fr
- 
+  grid-template-columns: 1fr 1fr 1fr;
 }
 
 /* Add space between the cards */
@@ -649,5 +623,65 @@ margin: 10px;
   display: grid;
   flex-wrap: wrap;
   justify-content: space-between;
- 
 }
+
+div {
+  text-align: center;
+}
+
+footer {
+  background-color: hsl(0, 13%, 79%);
+  color: #fff;
+  padding: 20px;
+}
+
+.contact-info h3 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.social-media a {
+  color: #fff;
+  text-decoration: none;
+  margin: 0 10px;
+  font-size: 18px;
+  transition: color 0.3s;
+  justify-content: space-evenly;
+}
+
+.social-media a:hover {
+  color:rgb(195, 100, 88)
+}
+
+/* --------------------------------------------------------- */
+
+
+/* -------style for the cart ----------- */
+/* Styles for the shopping cart container */
+.cart-list {
+  background-color: #f5f5f5;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+
+
+/* Styles for the list of cart items */
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+}
+
+/* Styles for the product image */
+li img {
+  max-width: 100px;
+  height: auto;
+}
+
+
+

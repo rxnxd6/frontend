@@ -2,7 +2,6 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import {
-  editProduct,
   productsRequest,
   productsSuccess,
   removeProduct
@@ -11,6 +10,7 @@ import { AppDispatch, RootState } from '../redux/store'
 import api from '../api'
 import NewProductWrapper from './NewProductWrapper'
 import AdminsideBar from '../page/admin/AdminsideBar'
+import { Link } from 'react-router-dom'
 
 export function ProductsManager() {
   const dispatch = useDispatch<AppDispatch>()
@@ -18,8 +18,10 @@ export function ProductsManager() {
   const products = state.productsR
 
   useEffect(() => {
-    handleGetProducts()
-  }, [])
+    if (products.product.length === 0) {
+      handleGetProducts()
+    }
+  }, [dispatch])
 
   /**
    * If you want to keep things simple you can follow this approach on updating
@@ -54,6 +56,14 @@ export function ProductsManager() {
                 onClick={() => dispatch(removeProduct({ productId: product.id }))}>
                 Delete
               </button>
+              <button>
+              <Link
+                to={`/dashboard/admin/products/edit/${product.id}`}
+                className=" bt-remove">
+                Edit
+              </Link>
+              </button>
+             
             </li>
           ))}
         </ul>
