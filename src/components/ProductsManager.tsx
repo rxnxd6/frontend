@@ -21,7 +21,7 @@ export function ProductsManager() {
     if (products.product.length === 0) {
       handleGetProducts()
     }
-  }, [dispatch])
+  }, [])
 
   /**
    * If you want to keep things simple you can follow this approach on updating
@@ -57,13 +57,10 @@ export function ProductsManager() {
                 Delete
               </button>
               <button>
-              <Link
-                to={`/dashboard/admin/products/edit/${product.id}`}
-                className=" bt-remove">
-                Edit
-              </Link>
+                <Link to={`/dashboard/admin/products/edit/${product.id}`} className=" bt-remove">
+                  Edit
+                </Link>
               </button>
-             
             </li>
           ))}
         </ul>

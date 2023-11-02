@@ -6,7 +6,7 @@ import { ChangeEvent, FormEvent, useState } from 'react'
 import { Product, updateProduct } from '../redux/slices/products/productSlice'
 import { Link } from 'react-router-dom'
 
-export function ProductEdit() {
+export default function EditProduct() {
   const dispatch = useDispatch()
   const params = useParams()
   const products = useSelector((state: RootState) => state.productsR)
